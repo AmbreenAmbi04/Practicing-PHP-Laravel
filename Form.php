@@ -52,6 +52,7 @@
     }
 
     //Form Handling
+    session_start();
     if($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         $name = $_POST['name'];
@@ -59,6 +60,14 @@
         $password = $_POST['password'];
         $gender = $_POST['gender'];
         $skills = isset($_POST['skills']) ? $_POST['skills'] : [];
+
+        $_SESSION['email'] = $email;
+        $_SESSION['password'] = $password;
+
+        //Cookie set for 30 days
+        setcookie('email', $email, time() + (86400 * 30), "/");
+        setcookie('password', $password, time() + (86400 * 30), "/");
+        echo "<div class='container mt-3 alert alert-success'>Session and cookie stored successfully!</div>";
 
         echo "<h2>Your Input:</h2>";
         echo "Name: " . $name . "<br>";
