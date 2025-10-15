@@ -128,5 +128,15 @@
         {
             echo "Error updating record: " . $connection->error;
         }
+
+        $delete = "DELETE FROM tbl_info WHERE id=10";
+        if($connection->query($delete) === TRUE)
+        {
+            echo "<br>Record deleted successfully";
+        }
+        else
+        {
+            echo "Error deleting record: " . $connection->error;
+        }
     }
 ?>
