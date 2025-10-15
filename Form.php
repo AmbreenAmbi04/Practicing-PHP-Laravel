@@ -75,5 +75,31 @@
         echo "Password: " . $password . "<br>";
         echo "Gender: " . $gender . "<br>";
         echo "Skills: " . implode(", ", $skills) . "<br>";
+
+        $serverName = "localhost";
+        $userName = "root";
+        $password = "";
+        $dbname = "db_practicing";
+
+        $connection = new mysqli($serverName, $userName, $password, $dbname);
+
+        if($connection)
+        {
+            echo "Connection Successful!";
+        }
+        else
+        {
+            die("Connection Failed!" . $connection->connect_error);
+        }
+
+        $insert = "INSERT INTO tbl_info (name, email, password, gender, skills) VALUES ($name, $email, $password, $gender, '" . implode(", ", $skills) . "')";
+        if($connection->query($insert) === TRUE)
+        {
+            echo "New record created successfully";
+        }
+        else
+        {
+            echo "Error: " . $insert . "<br>" . $connection->error;
+        }
     }
 ?>
