@@ -118,5 +118,15 @@
                 "</td><td>" . $row['password'] . "</td><td>" . $row['gender'] . "</td><td>" . $row['skills'] . "</td></tr>";
             }
         }
+
+        $update = "UPDATE tbl_info SET password='burak' WHERE name='Burak Deniz'";
+        if($connection->query($update) === TRUE)
+        {
+            echo "<br>Record updated successfully";
+        }
+        else
+        {
+            echo "Error updating record: " . $connection->error;
+        }
     }
 ?>
