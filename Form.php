@@ -9,14 +9,21 @@
 <body>
     <div class="container card mt-3 p-3">
         <label class="fs-2 fw-bold">This is a form</label>
-        <form action= "Practicing-PHP-Laravel/Form.php" method="POST">
-            <label class="form-label">Name</label>
+        <form action= "Form.php" method="POST">
+            <label class="form-label fw-bold">Name</label>
             <input type="text" name="name" placeholder="Enter your name" class="form-control"><br>
-            <label class="form-label">Email address</label>
+            <label class="form-label fw-bold">Email address</label>
             <input type="email" name="email" placeholder="Enter your email" class="form-control"><br>
-            <label class="form-label">Password</label>
+            <label class="form-label fw-bold">Password</label>
             <input type="password" name="password" placeholder="Enter your password" class="form-control"><br>
-            <input type="submit" value="Submit">
+            <label class="form-label fw-bold">Gender</label><br>
+            <input type="radio" name="gender" class="radio" value="female">Female<br>
+            <input type="radio" name="gender" class="radio" value="male">Male<br>
+            <label class="form-label fw-bold">Skills</label><br>
+            <input type="checkbox" name="skills[]" class="checkbox" value="php">PHP<br>
+            <input type="checkbox" name="skills[]" class="checkbox" value="laravel">Laravel<br>
+            <input type="checkbox" name="skills[]" class="checkbox" value="react">React<br>
+            <input type="submit" value="Submit" class="btn btn-primary">
         </form>
     </div>
     
@@ -42,5 +49,22 @@
     foreach($colors as $code => $value)
     {
         echo "Color Code: " . $code . " Color Name: " . $value . "<br>";
+    }
+
+    //Form Handling
+    if($_SERVER['REQUEST_METHOD'] == 'POST')
+    {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $gender = $_POST['gender'];
+        $skills = isset($_POST['skills']) ? $_POST['skills'] : [];
+
+        echo "<h2>Your Input:</h2>";
+        echo "Name: " . $name . "<br>";
+        echo "Email: " . $email . "<br>";
+        echo "Password: " . $password . "<br>";
+        echo "Gender: " . $gender . "<br>";
+        echo "Skills: " . implode(", ", $skills) . "<br>";
     }
 ?>
