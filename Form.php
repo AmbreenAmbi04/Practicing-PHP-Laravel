@@ -105,5 +105,18 @@
         {
             echo "Error: " . $insert . "<br>" . $connection->error;
         }
+
+        $fetch = "SELECT * FROM tbl_info";
+        $result = $connection->query($fetch);
+        if($result->num_rows > 0)
+        {
+            echo "<h2>Data from Database:</h2>";
+            echo "<table border='1'><tr><th>ID</th><th>Name</th><th>Email</th><th>Password</th><th>Gender</th><th>Skills</th></tr>";
+            while($row = $result->fetch_assoc())
+            {
+                echo "<tr><td>" . $row['id'] . "</td><td>" . $row['name'] . "</td><td>" . $row['email'] .
+                "</td><td>" . $row['password'] . "</td><td>" . $row['gender'] . "</td><td>" . $row['skills'] . "</td></tr>";
+            }
+        }
     }
 ?>
