@@ -92,10 +92,14 @@
             die("Connection Failed!" . $connection->connect_error);
         }
 
-        $insert = "INSERT INTO tbl_info (name, email, password, gender, skills) VALUES ($name, $email, $password, $gender, '" . implode(", ", $skills) . "')";
+        $skills_str = implode(", ", $skills);
+
+        $insert = "INSERT INTO tbl_info (name, email, password, gender, skills)
+           VALUES ('$name', '$email', '$password', '$gender', '$skills_str')";
+
         if($connection->query($insert) === TRUE)
         {
-            echo "New record created successfully";
+            echo "<br>New record created successfully";
         }
         else
         {
