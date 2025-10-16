@@ -51,6 +51,15 @@
         echo "Color Code: " . $code . " Color Name: " . $value . "<br>";
     }
 
+    //Array Merge
+    $array1 = ["Hello", "I", "am"];
+    $array2 = ["learning", "PHP", "and", "Laravel"];
+    $mergedArray = array_merge($array1, $array2);
+    foreach($mergedArray as $item)
+    {
+        echo $item . " ";
+    }
+
     //Form Handling
     session_start();
     if($_SERVER['REQUEST_METHOD'] == 'POST')
